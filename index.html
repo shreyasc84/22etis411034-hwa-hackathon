@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sniffari is the adaptive enrichment system that cures dog boredom with daily quests built around sniffing, solving, chewing and treats." />
+  <meta name="theme-color" content="#12172b" />
+  <title>Sniffari — A new adventure every day for your dog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="Sniffari home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" fill="#ffd23f"/><circle cx="20" cy="20" r="10" fill="#12172b"/><circle cx="20" cy="20" r="4" fill="#ff6b5b"/><path d="M20 2v6M20 32v6M2 20h6M32 20h6" stroke="#12172b" stroke-width="3" stroke-linecap="round"/></svg>
+        </span>
+        <span>Sniffari</span>
+      </a>
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+        <a href="#why">Why it works</a>
+        <a href="#ideas">The idea</a>
+        <a href="#shop">Shop</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button class="cart-button" id="cartButton" aria-label="Open cart">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h8.1a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.4" fill="currentColor"/><circle cx="18" cy="20" r="1.4" fill="currentColor"/></svg>
+        <span>Cart</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="pulse-dot"></span> Built for the dog who has everything</span>
+          <h1>A new adventure <em>every day</em> for your dog.</h1>
+          <p class="hero-lede">Sniffari turns boredom into brainpower. One clever system, five kinds of play, and a fresh quest every morning — so your dog stays busy, calm and wonderfully tired.</p>
+          <div class="hero-actions">
+            <a href="#shop" class="btn btn-primary">Shop the starter kit <span aria-hidden="true">→</span></a>
+            <a href="#how" class="btn btn-ghost">See how it works</a>
+          </div>
+          <div class="hero-proof">
+            <div class="avatars" aria-hidden="true"><span>🐕</span><span>🐩</span><span>🐶</span><span>🐕‍🦺</span></div>
+            <p><strong>Loved by 12,000+ pups</strong><br /><span class="stars" aria-label="5 out of 5 stars">★★★★★</span> 4.9 average rating</p>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-blob"></div>
+          <svg class="hero-svg" viewBox="0 0 520 470" fill="none">
+            <ellipse cx="260" cy="415" rx="175" ry="22" fill="#12172b" opacity="0.12"/>
+            <g class="float-slow">
+              <rect x="120" y="150" width="280" height="215" rx="42" fill="#12172b"/>
+              <rect x="134" y="164" width="252" height="181" rx="32" fill="#232b49"/>
+              <circle cx="260" cy="254" r="88" fill="#ffd23f"/>
+              <circle cx="260" cy="254" r="70" fill="#f7b733"/>
+              <g stroke="#12172b" stroke-width="7" stroke-linecap="round">
+                <path d="M210 224h100M210 254h100M210 284h100"/>
+              </g>
+              <g fill="#12172b">
+                <circle cx="224" cy="224" r="9"/><circle cx="296" cy="224" r="9"/>
+                <circle cx="224" cy="254" r="9"/><circle cx="296" cy="254" r="9"/>
+                <circle cx="224" cy="284" r="9"/><circle cx="296" cy="284" r="9"/>
+              </g>
+              <rect x="182" y="128" width="156" height="34" rx="17" fill="#ff6b5b"/>
+              <circle cx="260" cy="145" r="8" fill="#fff" opacity="0.9"/>
+            </g>
+            <g class="float-fast">
+              <circle cx="112" cy="112" r="46" fill="#4ecdc4"/>
+              <circle cx="112" cy="112" r="34" fill="#3ab5ad"/>
+              <g fill="#12172b"><circle cx="96" cy="100" r="5"/><circle cx="124" cy="96" r="5"/><circle cx="104" cy="122" r="5"/><circle cx="128" cy="124" r="5"/></g>
+              <path d="M88 76c0-14 10-24 22-24" stroke="#12172b" stroke-width="7" stroke-linecap="round"/>
+            </g>
+            <g class="float-med">
+              <path d="M398 92c22-18 54-8 58 18 4 24-14 42-34 42-16 0-26-8-34-20-10-16-8-28 10-40Z" fill="#fff5e6"/>
+              <ellipse cx="428" cy="126" rx="30" ry="34" fill="#fff"/>
+              <path d="M398 108c-14-6-20 8-14 22 4 10 12 14 20 12" fill="#e8b98b"/>
+              <path d="M458 108c14-6 20 8 14 22-4 10-12 14-20 12" fill="#e8b98b"/>
+              <circle cx="416" cy="120" r="4.5" fill="#12172b"/><circle cx="440" cy="120" r="4.5" fill="#12172b"/>
+              <ellipse cx="428" cy="136" rx="7" ry="5" fill="#12172b"/>
+              <path d="M428 141v6M428 147c-5 6-12 5-15 0M428 147c5 6 12 5 15 0" stroke="#12172b" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <path d="M410 90c8-16 30-16 38 0" stroke="#e8b98b" stroke-width="9" stroke-linecap="round"/>
+            </g>
+            <g fill="#ff6b5b"><circle cx="78" cy="292" r="9"/><circle cx="452" cy="330" r="11"/></g>
+            <g fill="#ffd23f"><circle cx="92" cy="368" r="7"/><circle cx="430" cy="216" r="8"/></g>
+          </svg>
+          <div class="art-tag art-tag-one">sniff</div>
+          <div class="art-tag art-tag-two">solve</div>
+          <div class="art-tag art-tag-three">treat</div>
+        </div>
+      </div>
+      <div class="container ticker-wrap">
+        <div class="ticker">
+          <span>15 min of brain work ≈ 30 min walk</span><i>✦</i>
+          <span>5 play modes in 1 system</span><i>✦</i>
+          <span>Adapts as your dog learns</span><i>✦</i>
+          <span>Dishwasher-safe parts</span><i>✦</i>
+          <span>15 min of brain work ≈ 30 min walk</span><i>✦</i>
+          <span>5 play modes in 1 system</span><i>✦</i>
+        </div>
+      </div>
+    </section>
+
+    <section class="section problem" id="why">
+      <div class="container problem-grid">
+        <div class="section-head">
+          <span class="kicker">The problem</span>
+          <h2>A bored dog will find a job.<br />Usually, it's your shoes.</h2>
+        </div>
+        <div class="problem-copy">
+          <p>Chewed-up slippers, dug-up garden beds, barking at the postman for forty minutes — that isn't naughtiness. It's a clever, energetic animal with nothing to do.</p>
+          <p>Vets and behaviourists agree: mental stimulation matters as much as the walk. About <strong>15 focused minutes of puzzle and scent work can tire a dog as much as a 30-minute stroll</strong> — and it leaves them calm instead of wired.</p>
+          <div class="problem-cards">
+            <div class="mini-card"><span>🐾</span><p><strong>Sniff</strong><small>Their strongest sense, finally put to work.</small></p></div>
+            <div class="mini-card"><span>🧩</span><p><strong>Solve</strong><small>A little challenge with a tasty payoff.</small></p></div>
+            <div class="mini-card"><span>🦴</span><p><strong>Chew</strong><small>The natural way to settle and de-stress.</small></p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ideas" id="ideas">
+      <div class="container">
+        <div class="center-head">
+          <span class="kicker">We did the homework</span>
+          <h2>Five brilliant ideas. One better system.</h2>
+          <p>We read the most-loved enrichment products of 2026, kept what actually works, and built a system that does all of it — and changes daily so it never gets stale.</p>
+        </div>
+        <div class="ideas-grid">
+          <article class="idea-card">
+            <div class="idea-num">01</div>
+            <div class="idea-icon">🥣</div>
+            <h3>The stuffable classic</h3>
+            <p>Fill it, freeze it, watch them work. The durable rubber chew that's the number-one pick in almost every guide.</p>
+            <div class="idea-keep"><strong>We kept:</strong> the long, licky, freeze-and-fill engagement.</div>
+          </article>
+          <article class="idea-card">
+            <div class="idea-num">02</div>
+            <div class="idea-icon">🌀</div>
+            <h3>The wobble dispenser</h3>
+            <p>Top-heavy rolling toys that drip out kibble one piece at a time — turning a 30-second meal into a 20-minute hunt.</p>
+            <div class="idea-keep"><strong>We kept:</strong> unpredictable movement that rewards a nudge.</div>
+          </article>
+          <article class="idea-card">
+            <div class="idea-num">03</div>
+            <div class="idea-icon">🧠</div>
+            <h3>The layered puzzle</h3>
+            <p>Spinning tiers, sliding tiles and locking drawers with difficulty levels that grow with a clever dog.</p>
+            <div class="idea-keep"><strong>We kept:</strong> adjustable levels so they're never bored or frustrated.</div>
+          </article>
+          <article class="idea-card">
+            <div class="idea-num">04</div>
+            <div class="idea-icon">🌿</div>
+            <h3>The snuffle mat</h3>
+            <p>Fabric folds that turn dinner into a scent hunt — brilliant for fast eaters, nervous pups and rainy days.</p>
+            <div class="idea-keep"><strong>We kept:</strong> nose-first foraging that calms as it tires.</div>
+          </article>
+          <article class="idea-card">
+            <div class="idea-num">05</div>
+            <div class="idea-icon">📱</div>
+            <h3>Smart connected play</h3>
+            <p>App-controlled bones and treat-tossing cameras that let you play even when you're in another room.</p>
+            <div class="idea-keep"><strong>We kept:</strong> the daily quest app that adapts to your dog.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shop" id="shop">
+      <div class="container">
+        <div class="center-head">
+          <span class="kicker">The kit</span>
+          <h2>Meet your dog's new favourite thing.</h2>
+          <p>Start with the system, add the modes your dog loves most. Every piece is food-safe, tough, and rinses clean in seconds.</p>
+        </div>
+        <div class="product-grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <section class="section how" id="how">
+      <div class="container">
+        <div class="center-head light">
+          <span class="kicker">How it works</span>
+          <h2>Three steps to a happier, tireder dog.</h2>
+        </div>
+        <div class="steps-grid">
+          <article class="step"><span class="step-num">1</span><h3>Tell us about your dog</h3><p>Age, size, energy and what makes them tick. The app builds their play profile in under a minute.</p></article>
+          <article class="step"><span class="step-num">2</span><h3>Pick today's quest</h3><p>A fresh 10–15 minute mission every day: a sniff hunt, a puzzle ladder, a wobble chase, or a calm lick session.</p></article>
+          <article class="step"><span class="step-num">3</span><h3>Watch them light up</h3><p>Difficulty adapts as they learn, so the challenge stays just right. Then enjoy the glorious post-play nap.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reviews">
+      <div class="container">
+        <div class="center-head">
+          <span class="kicker">Real pups, real results</span>
+          <h2>Tail wags all round.</h2>
+        </div>
+        <div class="reviews-grid">
+          <blockquote class="review"><span class="stars">★★★★★</span><p>"Milo used to eat his breakfast in nine seconds. Now he spends fifteen minutes solving it and then flops down for a nap. I got my mornings back."</p><footer><span class="review-dog">🐕</span><div><strong>Priya &amp; Milo</strong><small>Border Collie, 3</small></div></footer></blockquote>
+          <blockquote class="review"><span class="stars">★★★★★</span><p>"The snuffle disc is a game-changer on rainy days. Luna's nose works overtime and she's calm for the rest of the evening."</p><footer><span class="review-dog">🐩</span><div><strong>Dan &amp; Luna</strong><small>Cocker Spaniel, 5</small></div></footer></blockquote>
+          <blockquote class="review"><span class="stars">★★★★★</span><p>"I loved that other puzzles got solved instantly. This one actually gets harder as Bean figures it out. Worth every penny."</p><footer><span class="review-dog">🐶</span><div><strong>Amy &amp; Bean</strong><small>Beagle, 2</small></div></footer></blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <div class="container faq-grid">
+        <div class="section-head">
+          <span class="kicker">Good questions</span>
+          <h2>Everything you<br />might be wondering.</h2>
+          <p>Still curious? Send us a note below — real humans answer.</p>
+        </div>
+        <div class="faq-list">
+          <details open><summary>Is it suitable for puppies and senior dogs?<span>+</span></summary><p>Yes. The app adjusts quest difficulty for age and ability, and the discs can be set to beginner or gentle mode. For puppies, start with short, supervised sessions.</p></details>
+          <details><summary>What if my dog is a heavy chewer?<span>+</span></summary><p>The base and discs are made from tough, food-safe rubber and plastic designed for real play. As with any enrichment toy, supervise the first few sessions and swap in the softer lick disc for gentle chewers.</p></details>
+          <details><summary>How do I clean it?<span>+</span></summary><p>All discs, the wobble ball and the mat are top-rack dishwasher safe, or rinse them in warm soapy water. The base just needs a quick wipe.</p></details>
+          <details><summary>Do I need a subscription?<span>+</span></summary><p>No. The daily quests and difficulty adaptation are included with your kit. There's no login, no subscription and no extra app purchase.</p></details>
+          <details><summary>When will my order arrive?<span>+</span></summary><p>Orders ship from our studio within 1–2 working days, usually arriving in 3–5 days. You'll get a confirmation with your order number right away.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container cta-grid">
+        <div>
+          <h2>Ready for a happier, tireder dog?</h2>
+          <p>Get the kit, pick a quest, and let the good kind of chaos begin.</p>
+        </div>
+        <form class="cta-form" id="subscribeForm">
+          <label class="sr-only" for="subscribeEmail">Email address</label>
+          <input id="subscribeEmail" name="email" type="email" placeholder="Your email address" required />
+          <button type="submit" class="btn btn-dark">Send me tips <span aria-hidden="true">→</span></button>
+          <p class="form-note" id="subscribeNote" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" fill="#ffd23f"/><circle cx="20" cy="20" r="10" fill="#12172b"/><circle cx="20" cy="20" r="4" fill="#ff6b5b"/></svg></span><span>Sniffari</span></a>
+        <p class="footer-tag">Small adventures. Big tail wags.</p>
+      </div>
+      <div><h4>Explore</h4><a href="#why">Why it works</a><a href="#ideas">The idea</a><a href="#shop">Shop</a></div>
+      <div><h4>Help</h4><a href="#faq">FAQ</a><a href="mailto:hello@sniffari.example">Contact</a><a href="#how">How it works</a></div>
+      <div><h4>Say hello</h4><p>hello@sniffari.example<br />Made with care for good dogs.</p></div>
+    </div>
+    <div class="container footer-bottom"><span>© <span id="year"></span> Sniffari. All rights reserved.</span><span>Made for dogs who deserve better Tuesdays.</span></div>
+  </footer>
+
+  <div class="drawer-overlay" id="drawerOverlay" hidden></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="Shopping cart">
+    <div class="drawer-head"><h2>Your basket</h2><button class="icon-btn" id="closeCart" aria-label="Close cart">×</button></div>
+    <div class="drawer-body" id="cartItems"><p class="empty-cart">Your basket is empty. Let's fix that. 🐾</p></div>
+    <div class="drawer-foot" id="cartFoot" hidden>
+      <div class="subtotal"><span>Subtotal</span><strong id="cartSubtotal">$0.00</strong></div>
+      <small>Free shipping included on every order.</small>
+      <button class="btn btn-primary btn-full" id="checkoutButton">Continue to checkout <span aria-hidden="true">→</span></button>
+    </div>
+  </aside>
+
+  <div class="modal-overlay" id="modalOverlay" hidden>
+    <div class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <button class="icon-btn modal-close" id="closeCheckout" aria-label="Close checkout">×</button>
+      <div id="checkoutView">
+        <span class="kicker">Almost there</span>
+        <h2 id="checkoutTitle">Checkout</h2>
+        <p class="modal-lede">Pop in your details and we'll send your order confirmation straight away.</p>
+        <form id="checkoutForm">
+          <div class="field-row">
+            <label>Full name<input name="name" type="text" autocomplete="name" required placeholder="Alex Taylor" /></label>
+            <label>Email<input name="email" type="email" autocomplete="email" required placeholder="alex@example.com" /></label>
+          </div>
+          <label>Delivery address<input name="address" type="text" autocomplete="street-address" required placeholder="12 Waggle Lane" /></label>
+          <div class="field-row">
+            <label>City<input name="city" type="text" autocomplete="address-level2" required placeholder="Springfield" /></label>
+            <label>Postcode<input name="postcode" type="text" autocomplete="postal-code" required placeholder="12345" /></label>
+          </div>
+          <div class="order-summary" id="orderSummary"></div>
+          <p class="checkout-error" id="checkoutError" role="alert"></p>
+          <button type="submit" class="btn btn-primary btn-full" id="placeOrder">Place order <span aria-hidden="true">→</span></button>
+        </form>
+      </div>
+      <div id="successView" hidden class="success-view">
+        <div class="success-icon">✓</div>
+        <h2>Order received!</h2>
+        <p>Thanks for giving your dog something brilliant to do. Your confirmation details are below.</p>
+        <div class="success-details" id="successDetails"></div>
+        <button class="btn btn-dark btn-full" id="doneButton">Back to the site</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

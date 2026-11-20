@@ -1,0 +1,15 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    ".hwa/rules.md"
+  ],
+  "disabled_providers": [
+    "anthropic",
+    "openai",
+    "xai",
+    "github-copilot",
+    "azure",
+    "google-vertex-anthropic",
+    "perplexity"
+  ]
+}

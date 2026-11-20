@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="announcement">Free shipping on every order <span>•</span> New: the Play Disc Pack <a href="#shop">Shop now →</a></div>
   <header class="site-header" id="top">
     <div class="container nav-wrap">
       <a class="brand" href="#top" aria-label="Sniffari home">
@@ -52,45 +53,25 @@
             <p><strong>Loved by 12,000+ pups</strong><br /><span class="stars" aria-label="5 out of 5 stars">★★★★★</span> 4.9 average rating</p>
           </div>
         </div>
-        <div class="hero-art" aria-hidden="true">
-          <div class="art-blob"></div>
-          <svg class="hero-svg" viewBox="0 0 520 470" fill="none">
-            <ellipse cx="260" cy="415" rx="175" ry="22" fill="#12172b" opacity="0.12"/>
-            <g class="float-slow">
-              <rect x="120" y="150" width="280" height="215" rx="42" fill="#12172b"/>
-              <rect x="134" y="164" width="252" height="181" rx="32" fill="#232b49"/>
-              <circle cx="260" cy="254" r="88" fill="#ffd23f"/>
-              <circle cx="260" cy="254" r="70" fill="#f7b733"/>
-              <g stroke="#12172b" stroke-width="7" stroke-linecap="round">
-                <path d="M210 224h100M210 254h100M210 284h100"/>
-              </g>
-              <g fill="#12172b">
-                <circle cx="224" cy="224" r="9"/><circle cx="296" cy="224" r="9"/>
-                <circle cx="224" cy="254" r="9"/><circle cx="296" cy="254" r="9"/>
-                <circle cx="224" cy="284" r="9"/><circle cx="296" cy="284" r="9"/>
-              </g>
-              <rect x="182" y="128" width="156" height="34" rx="17" fill="#ff6b5b"/>
-              <circle cx="260" cy="145" r="8" fill="#fff" opacity="0.9"/>
-            </g>
-            <g class="float-fast">
-              <circle cx="112" cy="112" r="46" fill="#4ecdc4"/>
-              <circle cx="112" cy="112" r="34" fill="#3ab5ad"/>
-              <g fill="#12172b"><circle cx="96" cy="100" r="5"/><circle cx="124" cy="96" r="5"/><circle cx="104" cy="122" r="5"/><circle cx="128" cy="124" r="5"/></g>
-              <path d="M88 76c0-14 10-24 22-24" stroke="#12172b" stroke-width="7" stroke-linecap="round"/>
-            </g>
-            <g class="float-med">
-              <path d="M398 92c22-18 54-8 58 18 4 24-14 42-34 42-16 0-26-8-34-20-10-16-8-28 10-40Z" fill="#fff5e6"/>
-              <ellipse cx="428" cy="126" rx="30" ry="34" fill="#fff"/>
-              <path d="M398 108c-14-6-20 8-14 22 4 10 12 14 20 12" fill="#e8b98b"/>
-              <path d="M458 108c14-6 20 8 14 22-4 10-12 14-20 12" fill="#e8b98b"/>
-              <circle cx="416" cy="120" r="4.5" fill="#12172b"/><circle cx="440" cy="120" r="4.5" fill="#12172b"/>
-              <ellipse cx="428" cy="136" rx="7" ry="5" fill="#12172b"/>
-              <path d="M428 141v6M428 147c-5 6-12 5-15 0M428 147c5 6 12 5 15 0" stroke="#12172b" stroke-width="3" stroke-linecap="round" fill="none"/>
-              <path d="M410 90c8-16 30-16 38 0" stroke="#e8b98b" stroke-width="9" stroke-linecap="round"/>
-            </g>
-            <g fill="#ff6b5b"><circle cx="78" cy="292" r="9"/><circle cx="452" cy="330" r="11"/></g>
-            <g fill="#ffd23f"><circle cx="92" cy="368" r="7"/><circle cx="430" cy="216" r="8"/></g>
-          </svg>
+        <div class="hero-art">
+          <div class="art-blob" aria-hidden="true"></div>
+          <div class="viewer3d hero-viewer" data-3d="kit">
+            <canvas role="img" aria-label="Interactive 3D model of the Sniffari starter kit. Drag to spin it around."></canvas>
+            <div class="viewer-fallback">Your browser can't show the 3D preview, but the kit still works a treat.</div>
+            <div class="viewer-hint">drag to spin</div>
+          </div>
+          <div class="hero-dog-chip" aria-hidden="true">
+            <svg viewBox="0 0 120 120" fill="none">
+              <circle cx="60" cy="60" r="56" fill="#fff5e6"/>
+              <ellipse cx="60" cy="66" rx="30" ry="32" fill="#fff"/>
+              <path d="M32 52c-14-6-20 8-14 22 4 10 12 14 20 12" fill="#e8b98b"/>
+              <path d="M88 52c14-6 20 8 14 22-4 10-12 14-20 12" fill="#e8b98b"/>
+              <circle cx="49" cy="62" r="4" fill="#12172b"/><circle cx="71" cy="62" r="4" fill="#12172b"/>
+              <ellipse cx="60" cy="76" rx="7" ry="5" fill="#12172b"/>
+              <path d="M60 81v5M60 86c-5 6-12 5-15 0M60 86c5 6 12 5 15 0" stroke="#12172b" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <path d="M43 38c8-16 26-16 34 0" stroke="#e8b98b" stroke-width="9" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
           <div class="art-tag art-tag-one">sniff</div>
           <div class="art-tag art-tag-two">solve</div>
           <div class="art-tag art-tag-three">treat</div>
@@ -169,6 +150,24 @@
             <p>App-controlled bones and treat-tossing cameras that let you play even when you're in another room.</p>
             <div class="idea-keep"><strong>We kept:</strong> the daily quest app that adapts to your dog.</div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section quest" id="quest">
+      <div class="container">
+        <div class="center-head">
+          <span class="kicker">Try it now</span>
+          <h2>Build today's quest in one tap.</h2>
+          <p>Pick your dog's mood and we'll plan a ten-minute brain game with exactly the right Sniffari pieces.</p>
+        </div>
+        <div class="quest-panel">
+          <div class="quest-options" role="group" aria-label="Pick your dog's mood">
+            <button class="quest-option is-active" type="button" data-quest="zoomies"><span aria-hidden="true">⚡</span>Full of beans</button>
+            <button class="quest-option" type="button" data-quest="calm"><span aria-hidden="true">☁️</span>Calm &amp; cosy</button>
+            <button class="quest-option" type="button" data-quest="nose"><span aria-hidden="true">👃</span>Nose first</button>
+          </div>
+          <div class="quest-result" id="questResult" aria-live="polite"></div>
         </div>
       </div>
     </section>
@@ -302,5 +301,13 @@
   </div>
 
   <script src="app.js" defer></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "/vendor/three.module.min.js"
+    }
+  }
+  </script>
+  <script type="module" src="viewer3d.js"></script>
 </body>
 </html>

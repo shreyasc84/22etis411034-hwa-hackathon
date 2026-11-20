@@ -5,6 +5,42 @@ const fallbackProducts = [
   { id: 'travel-mat', name: 'Snuffle Travel Mat', description: 'Roll-up scent mat for rainy days, holidays and calm mealtimes anywhere in the world.', price: 34, badge: 'New', icon: '🌿', art: 'mat' }
 ];
 
+const questPlans = {
+  zoomies: {
+    tag: 'For the zoomies',
+    title: 'The Wobble Chase',
+    time: '12 minutes',
+    steps: [
+      'Fill the wobble ball with a handful of kibble and give it a nudge.',
+      'Let your dog chase it around the kitchen — one piece at a time.',
+      'Cool down with three rounds of "find it" under a cushion.'
+    ],
+    product: 'wobble-ball'
+  },
+  calm: {
+    tag: 'For calm vibes',
+    title: 'The Slow Sunday Lick',
+    time: '10 minutes',
+    steps: [
+      'Spread soft food or yoghurt across the lick disc and freeze it for an hour.',
+      'Settle your dog on their mat and let the licking do the calming.',
+      'Finish with a slow sniff walk around one room.'
+    ],
+    product: 'disc-pack'
+  },
+  nose: {
+    tag: 'For the nose-first',
+    title: 'The Great Sniffari',
+    time: '15 minutes',
+    steps: [
+      'Scatter a meal through the snuffle mat and press a few treats deep into the folds.',
+      'Let your dog work the whole mat before you add any more.',
+      'Hide three treats around the room for a final scent safari.'
+    ],
+    product: 'travel-mat'
+  }
+};
+
 let products = fallbackProducts;
 let cart = loadCart();
 
@@ -86,6 +122,8 @@ async function loadProducts() {
   }
   renderProducts();
   renderCart();
+  renderQuest(document.querySelector('.quest-option.is-active')?.dataset.quest || 'zoomies');
+  initReveals();
 }
 
 function renderProducts() {
@@ -93,17 +131,21 @@ function renderProducts() {
   if (!grid) return;
   grid.innerHTML = products.map((product) => `
     <article class="product-card">
-      <div class="product-art">
-        ${product.badge ? `<span class="product-badge">${escapeHtml(product.badge)}</span>` : ''}
-        ${productArt(product.art || 'kit')}
-      </div>
+      <a class="product-art-link" href="products/${product.id}.html" aria-label="View ${escapeHtml(product.name)}">
+        <div class="product-art">
+          ${product.badge ? `<span class="product-badge">${escapeHtml(product.badge)}</span>` : ''}
+          <span class="product-3d-badge">3D</span>
+          ${productArt(product.art || 'kit')}
+        </div>
+      </a>
       <div class="product-info">
-        <h3>${escapeHtml(product.name)}</h3>
+        <h3><a href="products/${product.id}.html">${escapeHtml(product.name)}</a></h3>
         <p class="product-desc">${escapeHtml(product.description)}</p>
         <div class="product-bottom">
           <span class="price">${formatMoney(product.price)}</span>
           <button class="add-btn" data-add="${escapeHtml(product.id)}">Add to basket</button>
         </div>
+        <a class="view-link" href="products/${product.id}.html">Full details &amp; 3D <span aria-hidden="true">→</span></a>
       </div>
     </article>
   `).join('');
@@ -157,7 +199,8 @@ function renderCart() {
     </div>
   `).join('');
 
-  $('#cartSubtotal').textContent = formatMoney(cartTotal());
+  const subtotal = $('#cartSubtotal');
+  if (subtotal) subtotal.textContent = formatMoney(cartTotal());
   footEl.hidden = false;
   renderOrderSummary();
 }
@@ -177,36 +220,56 @@ function addToCart(id) {
   saveCart();
   renderCart();
   openCart();
+  const countEl = $('#cartCount');
+  if (countEl) {
+    countEl.classList.remove('bump');
+    void countEl.offsetWidth;
+    countEl.classList.add('bump');
+  }
 }
 
 function openCart() {
-  $('#cartDrawer').classList.add('open');
-  $('#cartDrawer').setAttribute('aria-hidden', 'false');
-  $('#drawerOverlay').hidden = false;
+  const drawer = $('#cartDrawer');
+  const overlay = $('#drawerOverlay');
+  if (!drawer || !overlay) return;
+  drawer.classList.add('open');
+  drawer.setAttribute('aria-hidden', 'false');
+  overlay.hidden = false;
   document.body.classList.add('modal-open');
 }
 
 function closeCart() {
-  $('#cartDrawer').classList.remove('open');
-  $('#cartDrawer').setAttribute('aria-hidden', 'true');
-  $('#drawerOverlay').hidden = true;
+  const drawer = $('#cartDrawer');
+  const overlay = $('#drawerOverlay');
+  if (!drawer || !overlay) return;
+  drawer.classList.remove('open');
+  drawer.setAttribute('aria-hidden', 'true');
+  overlay.hidden = true;
   document.body.classList.remove('modal-open');
 }
 
 function openCheckout() {
   if (!cartCount()) return;
   closeCart();
-  $('#checkoutView').hidden = false;
-  $('#successView').hidden = true;
-  $('#checkoutError').textContent = '';
+  const checkoutView = $('#checkoutView');
+  const successView = $('#successView');
+  const overlay = $('#modalOverlay');
+  if (!checkoutView || !successView || !overlay) return;
+  checkoutView.hidden = false;
+  successView.hidden = true;
+  const errorEl = $('#checkoutError');
+  if (errorEl) errorEl.textContent = '';
   renderOrderSummary();
-  $('#modalOverlay').hidden = false;
+  overlay.hidden = false;
   document.body.classList.add('modal-open');
-  $('#checkoutForm').querySelector('input').focus();
+  const firstInput = $('#checkoutForm')?.querySelector('input');
+  if (firstInput) firstInput.focus();
 }
 
 function closeCheckout() {
-  $('#modalOverlay').hidden = true;
+  const overlay = $('#modalOverlay');
+  if (!overlay) return;
+  overlay.hidden = true;
   document.body.classList.remove('modal-open');
 }
 
@@ -215,12 +278,13 @@ async function placeOrder(event) {
   const form = event.currentTarget;
   const button = $('#placeOrder');
   const errorEl = $('#checkoutError');
+  if (!button) return;
   const data = new FormData(form);
   const items = cartEntries().map(({ product, qty }) => ({ id: product.id, qty }));
 
   button.disabled = true;
   button.textContent = 'Placing your order…';
-  errorEl.textContent = '';
+  if (errorEl) errorEl.textContent = '';
 
   try {
     const response = await fetch('/api/order', {
@@ -241,22 +305,28 @@ async function placeOrder(event) {
     if (!response.ok || !result.ok) throw new Error(result.error || 'Something went wrong. Please try again.');
 
     const order = result.order;
-    $('#successDetails').innerHTML = `
-      <div><span>Order number</span><strong>${escapeHtml(order.id)}</strong></div>
-      <div><span>Name</span><strong>${escapeHtml(order.customer.name)}</strong></div>
-      <div><span>Email</span><strong>${escapeHtml(order.customer.email)}</strong></div>
-      <div><span>Items</span><strong>${order.items.reduce((sum, item) => sum + item.qty, 0)}</strong></div>
-      <div><span>Total paid</span><strong>${formatMoney(order.total)}</strong></div>
-      <div><span>Estimated arrival</span><strong>${escapeHtml(order.estimatedDelivery)}</strong></div>
-    `;
-    $('#checkoutView').hidden = true;
-    $('#successView').hidden = false;
+    const details = $('#successDetails');
+    if (details) {
+      details.innerHTML = `
+        <div><span>Order number</span><strong>${escapeHtml(order.id)}</strong></div>
+        <div><span>Name</span><strong>${escapeHtml(order.customer.name)}</strong></div>
+        <div><span>Email</span><strong>${escapeHtml(order.customer.email)}</strong></div>
+        <div><span>Items</span><strong>${order.items.reduce((sum, item) => sum + item.qty, 0)}</strong></div>
+        <div><span>Total paid</span><strong>${formatMoney(order.total)}</strong></div>
+        <div><span>Estimated arrival</span><strong>${escapeHtml(order.estimatedDelivery)}</strong></div>
+      `;
+    }
+    const checkoutView = $('#checkoutView');
+    const successView = $('#successView');
+    if (checkoutView) checkoutView.hidden = true;
+    if (successView) successView.hidden = false;
     cart = {};
     saveCart();
     renderCart();
     form.reset();
+    burstConfetti();
   } catch (error) {
-    errorEl.textContent = error.message;
+    if (errorEl) errorEl.textContent = error.message;
   } finally {
     button.disabled = false;
     button.innerHTML = 'Place order <span aria-hidden="true">→</span>';
@@ -267,6 +337,7 @@ async function subscribe(event) {
   event.preventDefault();
   const form = event.currentTarget;
   const note = $('#subscribeNote');
+  if (!note) return;
   const email = new FormData(form).get('email');
   note.textContent = 'Saving…';
   try {
@@ -281,6 +352,88 @@ async function subscribe(event) {
   } catch {
     note.textContent = 'Could not save that just now — please try again.';
   }
+}
+
+function renderQuest(key) {
+  const result = $('#questResult');
+  const plan = questPlans[key];
+  if (!result || !plan) return;
+  const product = productById(plan.product);
+  result.innerHTML = `
+    <div class="quest-result-main">
+      <div class="quest-result-head">
+        <span class="quest-tag">${plan.tag}</span>
+        <span class="quest-time">⏱ ${plan.time}</span>
+      </div>
+      <h3>${plan.title}</h3>
+      <ol class="quest-steps">${plan.steps.map((step) => `<li>${step}</li>`).join('')}</ol>
+    </div>
+    ${product ? `
+      <a class="quest-product" href="products/${product.id}.html">
+        <span class="quest-product-icon" aria-hidden="true">${product.icon}</span>
+        <span class="quest-product-copy"><small>Built with the</small><strong>${escapeHtml(product.name)}</strong></span>
+        <span class="quest-product-arrow" aria-hidden="true">→</span>
+      </a>
+    ` : ''}
+  `;
+}
+
+function initQuest() {
+  const options = document.querySelectorAll('[data-quest]');
+  if (!options.length) return;
+  options.forEach((button) => {
+    button.addEventListener('click', () => {
+      options.forEach((option) => option.classList.remove('is-active'));
+      button.classList.add('is-active');
+      renderQuest(button.dataset.quest);
+    });
+  });
+}
+
+function initReveals() {
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const selector = '.section-head, .center-head, .idea-card, .product-card, .step, .review, .faq-list details, .quest-panel, .panel, .feature-card, .quest-card, .related-card';
+  const els = [...document.querySelectorAll(selector)].filter((el) => !el.classList.contains('reveal'));
+  if (!els.length) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach((el, index) => {
+    el.classList.add('reveal');
+    el.style.transitionDelay = `${Math.min(index % 5, 4) * 60}ms`;
+    observer.observe(el);
+  });
+}
+
+function initHeaderState() {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+  const update = () => header.classList.toggle('scrolled', window.scrollY > 8);
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+}
+
+function burstConfetti() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'confetti';
+  const colors = ['#ffd23f', '#ff6b5b', '#4ecdc4', '#b8e08a', '#cbb6f5'];
+  for (let i = 0; i < 48; i += 1) {
+    const bit = document.createElement('i');
+    bit.style.left = `${Math.random() * 100}%`;
+    bit.style.background = colors[i % colors.length];
+    bit.style.animationDelay = `${Math.random() * 0.4}s`;
+    bit.style.animationDuration = `${1.6 + Math.random() * 1.2}s`;
+    wrap.appendChild(bit);
+  }
+  document.body.appendChild(wrap);
+  window.setTimeout(() => wrap.remove(), 3200);
 }
 
 function escapeHtml(value) {
@@ -307,29 +460,49 @@ document.addEventListener('click', (event) => {
   }
 });
 
-$('#cartButton').addEventListener('click', openCart);
-$('#closeCart').addEventListener('click', closeCart);
-$('#drawerOverlay').addEventListener('click', closeCart);
-$('#checkoutButton').addEventListener('click', openCheckout);
-$('#closeCheckout').addEventListener('click', closeCheckout);
-$('#modalOverlay').addEventListener('click', (event) => { if (event.target.id === 'modalOverlay') closeCheckout(); });
-$('#checkoutForm').addEventListener('submit', placeOrder);
-$('#subscribeForm').addEventListener('submit', subscribe);
-$('#doneButton').addEventListener('click', closeCheckout);
-$('#menuToggle').addEventListener('click', () => {
-  const nav = $('#mainNav');
-  const open = nav.classList.toggle('open');
-  $('#menuToggle').setAttribute('aria-expanded', String(open));
-});
-$('#mainNav').addEventListener('click', (event) => {
-  if (event.target.tagName === 'A') {
-    $('#mainNav').classList.remove('open');
-    $('#menuToggle').setAttribute('aria-expanded', 'false');
-  }
-});
+const cartButton = $('#cartButton');
+if (cartButton) cartButton.addEventListener('click', openCart);
+const closeCartButton = $('#closeCart');
+if (closeCartButton) closeCartButton.addEventListener('click', closeCart);
+const drawerOverlay = $('#drawerOverlay');
+if (drawerOverlay) drawerOverlay.addEventListener('click', closeCart);
+const checkoutButton = $('#checkoutButton');
+if (checkoutButton) checkoutButton.addEventListener('click', openCheckout);
+const closeCheckoutButton = $('#closeCheckout');
+if (closeCheckoutButton) closeCheckoutButton.addEventListener('click', closeCheckout);
+const modalOverlay = $('#modalOverlay');
+if (modalOverlay) modalOverlay.addEventListener('click', (event) => { if (event.target.id === 'modalOverlay') closeCheckout(); });
+const checkoutForm = $('#checkoutForm');
+if (checkoutForm) checkoutForm.addEventListener('submit', placeOrder);
+const subscribeForm = $('#subscribeForm');
+if (subscribeForm) subscribeForm.addEventListener('submit', subscribe);
+const doneButton = $('#doneButton');
+if (doneButton) doneButton.addEventListener('click', closeCheckout);
+const menuToggle = $('#menuToggle');
+if (menuToggle) {
+  menuToggle.addEventListener('click', () => {
+    const nav = $('#mainNav');
+    if (!nav) return;
+    const open = nav.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(open));
+  });
+}
+const mainNav = $('#mainNav');
+if (mainNav) {
+  mainNav.addEventListener('click', (event) => {
+    if (event.target.tagName === 'A') {
+      mainNav.classList.remove('open');
+      if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') { closeCart(); closeCheckout(); }
 });
-$('#year').textContent = String(new Date().getFullYear());
+const yearEl = $('#year');
+if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
+initQuest();
+initHeaderState();
+initReveals();
 loadProducts();
